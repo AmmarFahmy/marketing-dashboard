@@ -59,7 +59,9 @@
       "Bash(curl -s 'https://api.semrush.com/analytics/v1/?key=a29b0f946ecc65e81342d383a9c82e54&type=backlinks_overview&target=semrush.com&target_type=root_domain&export_columns=total,domains_num,follows_num,nofollows_num')",
       "Bash(curl -s 'https://api.semrush.com/?type=domain_ranks&key=a29b0f946ecc65e81342d383a9c82e54&export_columns=Dn,Or&domain=google.com&database=us')",
       "WebFetch(domain:developer.semrush.com)",
-      "WebFetch(domain:www.semrush.com)"
+      "WebFetch(domain:www.semrush.com)",
+      "Bash(ls D:/DEV/*.json D:/DEV/package* 2>&1; echo \"---\"; ls D:/*.json D:/package* 2>&1)",
+      "Bash(git -C D:/DEV/marketing-dashboard diff package.json)"
     ]
   }
 }
