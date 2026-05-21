@@ -2,6 +2,7 @@ import { BarChart2, Clock } from 'lucide-react'
 import { fmtRelativeTime } from '@/lib/utils'
 import { DateRangePicker } from './DateRangePicker'
 import { RefreshButton } from './RefreshButton'
+import { UserMenu } from '@/components/auth/UserMenu'
 import type { DateRange, RefreshStatus } from '@/lib/types'
 
 interface Props {
@@ -62,6 +63,8 @@ export function Header({
             onRefresh={onRefresh}
             onCancel={onCancel}
           />
+
+          <UserMenu />
         </div>
       </div>
     </header>

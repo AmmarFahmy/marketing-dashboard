@@ -12,17 +12,22 @@ db: Client = create_client(_url, _key)
 
 # ── Sessions ─────────────────────────────────────────────────────────────────
 
-def list_sessions() -> list[dict]:
-    res = db.table("chat_sessions") \
+def list_sessions(user_id: str = "") -> list[dict]:
+    query = db.table("chat_sessions") \
         .select("*") \
-        .order("updated_at", desc=True) \
-        .execute()
+        .order("updated_at", desc=True)
+    if user_id:
+        query = query.eq("user_id", user_id)
+    res = query.execute()
     return res.data
 
 
-def create_session(title: str = "New Chat") -> dict:
+def create_session(title: str = "New Chat", user_id: str = "") -> dict:
+    row = {"title": title}
+    if user_id:
+        row["user_id"] = user_id
     res = db.table("chat_sessions") \
-        .insert({"title": title}) \
+        .insert(row) \
         .execute()
     return res.data[0]
 

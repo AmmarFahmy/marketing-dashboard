@@ -6,12 +6,13 @@ const AGENT_URL = process.env.AGENT_API_URL ?? 'http://localhost:8000'
 
 /** POST /api/chat — proxy chat message to FastAPI, forward SSE stream */
 export async function POST(req: NextRequest) {
+  const userId = req.headers.get('x-user-id') ?? ''
   const body = await req.json()
 
   const upstream = await fetch(`${AGENT_URL}/api/chat`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
+    body: JSON.stringify({ ...body, user_id: userId }),
   })
 
   if (!upstream.ok || !upstream.body) {

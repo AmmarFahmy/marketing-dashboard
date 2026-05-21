@@ -38,18 +38,19 @@ class ChatRequest(BaseModel):
 
 class SessionCreate(BaseModel):
     title: str = "New Chat"
+    user_id: str = ""
 
 
 # ── Sessions endpoints ───────────────────────────────────────────────────────
 
 @app.get("/api/sessions")
-async def api_list_sessions():
-    return list_sessions()
+async def api_list_sessions(user_id: str = ""):
+    return list_sessions(user_id)
 
 
 @app.post("/api/sessions")
 async def api_create_session(body: SessionCreate):
-    return create_session(body.title)
+    return create_session(body.title, body.user_id)
 
 
 @app.delete("/api/sessions/{session_id}")
